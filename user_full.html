@@ -1,0 +1,40 @@
+<html>
+<title>Users</title>
+  <body>
+	<head>Users:<head> <br/>
+	{% for user in users %}
+      {% if user.name %}
+	  <user>
+	  <id>{{ user.key }}</id>
+	<created>{{ user.created.hour}}:{{ user.created.minute}}-{{ user.created.day}}/{{ user.created.month}}/{{ user.created.year}}</created>
+	<modified>{{ user.modified.hour}}:{{ user.modified.minute}}-{{ user.modified.day}}/{{ user.modified.month}}/{{ user.modified.year}}</modified>
+  
+	  <name>{{ user.name }}</name>
+	  <password>{{ user.password }}</password>
+	  <point>{{ user.point }}
+	  
+	  </user>
+	  <br/>
+	  {% endif %}
+    {% endfor %}
+	
+    {% if admin %}
+	<h>Create user</h>
+	<form action="/user/create" method="post">
+      <h>UserName:</h><div><textarea name="name" rows="1" cols="30"></textarea></div>
+	  <h>Password:</h><div><textarea name="password" rows="1" cols="30"></textarea></div>
+      <div><input type="submit" value="Create"></div>
+    </form>
+	
+	<h>Modify user</h>
+	<form action="/user/modify" method="post">
+		<h>UserID:</h><div><textarea name="id" rows="1" cols="50"></textarea></div>
+		<h>Password:</h><div><textarea name="password" rows="1" cols="30"></textarea></div>
+		<h>point:</h><div><textarea name="point" rows="1" cols="30"></textarea></div>
+		<div><input type="submit" value="Modify"></div>
+	</form>
+	<hr />
+	{% endif %}
+
+  </body>
+</html>

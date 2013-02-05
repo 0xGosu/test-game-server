@@ -1,0 +1,43 @@
+application: test-game-server
+version: 1g-image-thumb
+runtime: python
+api_version: 1
+
+handlers:
+- url: /[^/]*
+  script: main.py
+  
+- url: /auth/.*
+  script: auth.py
+  
+- url: /entry/.*
+  script: entry.py
+  
+- url: /user/.*
+  script: user.py
+  
+- url: /image/.*
+  script: image.py
+
+- url: /csv/.*
+  script: csv_download.py
+    
+  
+- url: /test/.*
+  script: test.py
+
+- url: /tasks/get_movie_calendar
+  script: cron_job_get_movie_calendar.py
+  login: admin
+
+- url: /tasks/get_tv_calendar
+  script: cron_job_get_tv_calendar.py
+  login: admin
+
+- url: /tasks/get_movie_info
+  script: cron_job_get_movie_info.py
+  login: admin
+  
+builtins:
+- admin_redirect: on
+- remote_api: on

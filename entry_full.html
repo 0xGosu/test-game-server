@@ -1,0 +1,49 @@
+<html>
+<title>Entries</title>
+  <body>
+	<head>Entries:<head> <br/>
+	{% for entry in entries %}
+  
+	  {% if not entry.key %}
+		<id>{{entry}}</id>
+	  {% else %}
+	  
+	  <entry>
+	  <id>{{ entry.key }}</id>
+	 
+
+	<created>{{entry.created|date:"Y-m-d H:i:s.u" }}</created>
+  
+	  <content>{{ entry.content|safe }}</content>
+	  <type>{{ entry.type }}</type>
+	  {% for tag in entry.tag %}
+	  <tag>{{ tag }}</tag>
+	  {% empty %}<tag></tag>
+	  {% endfor %}
+	  </entry>
+	  
+
+	  {% endif %}
+	  <br/>
+   
+	{% endfor %}
+	
+    {% if request.admin %}
+	<h>Create Entry</h>
+	<form action="/entry/?room={{room}}" method="post">
+      <h>Content:</h><div><textarea name="content" rows="3" cols="60"></textarea></div>
+	  <h>Type:</h><div><input type="text" name="type"></div>
+	  <h>Tag:</h><div><input type="text" name="tag"></div>
+	  <h>Tag2:</h><div><input type="text" name="tag"></div>
+      <div><input type="submit" value="Create"></div>
+    </form>
+	<hr />
+	<h>Change Room</h>
+	<form action="/entry/" method="get">
+      <div><input type="text" name="room"></div>
+      <div><input type="submit" value="Change room"></div>
+    </form>
+	{% endif %}
+
+  </body>
+</html>

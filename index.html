@@ -1,0 +1,93 @@
+<html>
+	<title>Game Sever</title>
+	<body>
+		<head>Game Sever Service For Casual Game version 1d<head>
+			<br /> 
+			<h2>{{greeting}}</h2>
+			<a href="{{ url }}">Click here to {{ url_linktext }}</a>
+			<hr/>
+			<h>Game Server Data request<h>
+				<p>
+			<b>Link:</b> /entry/?room=?type=?tag=?max=?hours=?minutes=?timeLowerBound=?keys_only=?json= <br/>
+			<b>Method:</b> GET  <br/>
+			<b>room:</b> string <br/>
+			<b>type:</b> string, if type is no specified, match any type , if more than one type, match entry with type is one of those type (or condition)<br/>
+			<b>tag:</b> string, if tag is no specified, match any tag , if more than one tag, match entry with atleast those tag (and condition)<br/>
+			<b>max:</b> usigned int, range(0,1000), default=8 , 0 = get all possible entry<br/>
+			<b>hours:</b> usigned int, number of hours <br/>
+			<b>minutes:</b> usigned int, number of minutes <br/>
+			<b>timeLowerBound:</b> datime string, a lower bound for time filter <br/>
+			<b>keys_only:</b> bool, return only key if true  <br/>
+			<b>json:</b> bool, return in json format  <br/>
+			<b>Description:</b> Get number(max) of entries of a room that have specified tag from time distance from hours,minutes ago to now
+			and have created time greater than timeLowerBound.
+			</p>
+				<p>
+			<b>Link:</b> /entry/?room=?content=?tag=?tag=... <br/>
+			<b>Method:</b> POST  <br/>
+			<b>room:</b> string <br/>
+			<b>content:</b> text <br/>
+			<b>tag:</b> string <br/>
+			<b>Description:</b> Send an Entry to a room with content, tag 
+			</p>
+				<p>
+			<b>Link:</b> /entry/byid?id=?id=?id... <br/>
+			<b>Method:</b> GET  <br/>
+			<b>id:</b> 64 bit string ID, can request for multi id at a time <br/>
+			<b>Description:</b> Get entries with id string
+			</p>
+			
+			<hr/>
+			<h>Game Server Account request<h>
+				<p>
+			<b>Link:</b> /user/?id=?id=?id... <br/>
+			<b>Method:</b> GET  <br/>
+			<b>id:</b> 64 bit string ID, can request for multi id at a time  <br/>
+			<b>Description:</b> Get user detail with id string
+			</p>
+				<p>
+			<b>Link:</b> /user/create?name=?password= <br/>
+			<b>Method:</b> POST  <br/>
+			<b>name:</b> string <br/>
+			<b>password:</b> string <br/>
+			<b>Description:</b> Create an user with user name and password, point = 0
+			</p>
+				<p>
+			<b>Link:</b> /user/getid?name=?password= <br/>
+			<b>Method:</b> GET  <br/>
+			<b>name:</b> string <br/>
+			<b>password:</b> string <br/>
+			<b>Description:</b> Get user id by user name and password
+			</p>
+				<p>
+			<b>Link:</b> /user/modify?id=?password=?point= <br/>
+			<b>Method:</b> POST  <br/>
+			<b>id:</b> 64 bit string ID <br/>
+			<b>password:</b> string <br/>
+			<b>point:</b> [sign]+int, if sign=='+', add point to current point, same for '-','*','/', if no sign , set new point = point <br/>
+			<b>Description:</b> Modify an user detail by id			
+			</p>
+			
+			<hr/>
+			<h>Game Server Image request<h>
+				<p>
+			<b>Link:</b> /image/[img_id.png]?img_id=?name=?thumb=<br/>
+			<b>Method:</b> GET  <br/>
+			<b>img_id:</b> 64 bit string ID <br/>
+			<b>name:</b> image name <br/>
+			<b>thumb:</b> thumb=yes, return thumb instead of image<br/>
+			<b>Description:</b> Get an image with img_id string or image name
+			</p>
+				<p>
+			<b>Link:</b> /image/create/?name=?content=?thumb=<br/>
+			<b>Method:</b> POST  <br/>
+			<b>name:</b> string <br/>
+			<b>content:</b> base 64 string represent an image <br/>
+			<b>thumb:</b> if thumb, make thumb for image. if thumb=content, use thumb for content <br/>
+			<b>Description:</b> Upload an image to server with name (use /image/upload/for test );
+			</p>
+						
+			<a href="{{ url }}">{{ url_linktext }}</a>
+			
+			</body>
+</html>

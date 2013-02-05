@@ -1,0 +1,13 @@
+cron:
+
+- description: get calendar from cinemas website
+  url: /tasks/get_movie_calendar
+  schedule: every 24 hours
+  
+- description: get calendar from tv broadcasting company website
+  url: /tasks/get_tv_calendar
+  schedule: every 24 hours
+  
+- description: get movie info from imbd and trailer from youtube  base on movie title get from cinemas website
+  url: /tasks/get_movie_info
+  schedule: every 24 hours
